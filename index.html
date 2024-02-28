@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,74 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header>
-        
+    <header class="container mx-auto space-y-6">
+        <div>
+            <div class="navbar bg-base-100">
+                <div class="flex-1">
+                  <a class="btn btn-ghost text-3xl text-[#100F0F]">JAS Gadgets</a>
+                </div>
+                <div class="flex gap-2">
+                    <div class="flex gap-2">
+                        <input id="search-filed"  type="text" placeholder="Search hare" class="input input-bordered w-full " />
+                        <button onclick="handleSearch()" class="btn btn-warning">Search</button>
+                    </div>
+                  <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                      <div class="w-10 rounded-full">
+                        <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                      </div>
+                    </div>
+                    <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                      <li>
+                        <a class="justify-between">
+                          Profile
+                          <span class="badge">New</span>
+                        </a>
+                      </li>
+                      <li><a>Settings</a></li>
+                      <li><a>Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <h1 class="text-4xl font-sans font-extrabold text-center text-[#100F0F]"> Your Awesome Phone</h1>
     </header>
-    <main>
+    <main class="container mx-auto">
+        <section>
+            <div id="loading-spinner" class="hidden text-center my-48">
+                <span class="loading loading-dots loading-lg"></span>
+            </div>
+            <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-6">
+               
+            </div>
+            <div class="hidden my-5 text-center" id="see-all-phone">
+                <button class="btn btn-primary text-lg font-semibold">See All</button>
+            </div>
+        </section>
+        <section>
+          <div>
+            <!-- Open the modal using ID.showModal() method -->
 
+              <dialog id="showDetailsModal" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                  <h3 id="showDetailsPhoneName" class="font-bold text-lg"></h3>
+                  <div class=" flex justify-center">
+                    <img  src="" id="showDetailsImg" alt="">
+                  </div> 
+                  <p class="py-1 text-xl text-black font-bold">storage: <span id="DetailsPhoneShow" class="text-lg font-normal"></span></p>
+                  <p class="py-1 text-xl text-black font-bold">Display Size: <span id="showDetailDisplaySize" class="text-lg font-normal"></span></p>
+                  <p class="py-1 text-xl text-black font-bold">Display Size: <span id="showDetailChipset" class="text-lg font-normal"></span></p>
+                  <div class="">
+                    <form method="dialog">
+                      <!-- if there is a button in form, it will close the modal -->
+                      <button class="btn ">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+          </div>
+        </section>
     </main>
     <footer>
 
