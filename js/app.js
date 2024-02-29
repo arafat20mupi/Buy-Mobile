@@ -1,10 +1,11 @@
-const loadPhone = async (searchText , isShow) => {
+const loadPhone = async (searchText ="g" , isShow) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     const data = await res.json()
     const phones = data.data;
     // console.log(phones)
     displayPhones(phones ,isShow);
 };
+
 const displayPhones = (phones , isShow) => {
    const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML = '';
@@ -43,6 +44,10 @@ const displayPhones = (phones , isShow) => {
 const handleSearch = (isShow) => {
     toggleLoadingSpanners(true);
     const searchText = document.getElementById('search-filed').value;
+    const seeAllPhone = document.getElementById('see-all-phone-btn');
+    if (searchText.length > 0 &&!isShow){
+        seeAllPhone.classList.remove('hidden');
+    }
     loadPhone(searchText , isShow);
 };
 
@@ -69,12 +74,20 @@ const showPhoneDetail =(phone) => {
     showDetailsPhoneName.innerText = phone.name;
     const showDetailsImg = document.getElementById('showDetailsImg');
     showDetailsImg.src = phone.image;
-    const DetailsPhoneShow = document.getElementById('DetailsPhoneShow')
-    DetailsPhoneShow.innerText = phone.mainFeatures.storage;
-    const showDetailDisplaySize = document.getElementById('showDetailDisplaySize')
+    const DetailsPhoneShow = document.getElementById('DetailsPhoneShow');
+    DetailsPhoneShow.innerText = phone.mainFeatures.memory;
+    const showDetailDisplaySize = document.getElementById('showDetailDisplaySize');
     showDetailDisplaySize.innerText = phone.mainFeatures.displaySize;
-    const showDetailChipset = document.getElementById('showDetailChipset')
-    showDetailChipset.innerText = phone.mainFeatures.chipSet;
+    const showDetailReleaseDate = document.getElementById('showDetailReleaseDate');
+    showDetailReleaseDate.innerText = phone.releaseDate;
+    const showDetailChipset = document.getElementById('showDetailChipset');
+    showDetailChipset.innerText = phone?.mainFeatures?.chipSet;
+    const showDetailBrand = document.getElementById('showDetailBrand');
+    showDetailBrand.innerText = phone.brand;
+    // const showDetailPrice = document.getElementById('showDetailPrice');
+    // showDetailPrice.innerText = phone.price;
+    const showDetailGPS = document.getElementById('showDetailGPS');
+    showDetailGPS.innerText = phone.others.GPS;
 
 
     showDetailsModal.showModal();
@@ -85,4 +98,4 @@ const seeAllPhone = document.getElementById('see-all-phone');
 seeAllPhone.addEventListener('click', () => {
     handleSearch(true);
 });
-
+loadPhone();
